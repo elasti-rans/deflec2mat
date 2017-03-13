@@ -6,8 +6,8 @@
   so use this project to automate the rejects.
 
 ## Examples
-./deflect.py http://jira.company.com <issue id> --user-pwd <user> <password> deflect  # assigne the issue to some lucky person
+./deflect.py http://jira.company.com [issue id] --user-pwd [user] [password] deflect  # assigne the issue to some lucky person
 
-./deflect.py http://jira.company.com <issue id> --user-pwd <user> <password> dup  # set issue as duplicate
+./deflect.py http://jira.company.com [issue id] --user-pwd [user] [password] dup  # set issue as duplicate
 
-./deflect.py http://jira.company.com <issue id> --user-pwd <user> <password> dup4ever  # set as duplicate and every time someone changed its status return it to duplicate
+./deflect.py http://jira.company.com [issue id] --user-pwd [user] [password] dup4ever  # set as duplicate and every time someone changed its status return it to duplicate
