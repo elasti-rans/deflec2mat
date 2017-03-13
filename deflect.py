@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import time
+import random
 import argparse
 import argcomplete
 
@@ -23,6 +24,14 @@ def ensure_duplicate(client, issue_id):
         time.sleep(10)
 
 
+def rand_deflect(client, issue_id):
+    issue = client.issue(issue_id)
+    users = client.search_assignable_users_for_issues(
+        '', issueKey=issue.key, maxResults=200)
+    chosen_victim = random.choice(users)
+    client.assign_issue(issue, chosen_victim.name)
+
+
 def _parse_cli():
     parser = argparse.ArgumentParser()
     parser.add_argument('jira_url')
@@ -35,6 +44,9 @@ def _parse_cli():
 
     cmd = subparsers.add_parser('dup4ever')
     cmd.set_defaults(execute=ensure_duplicate)
+
+    cmd = subparsers.add_parser('deflect')
+    cmd.set_defaults(execute=rand_deflect)
 
     argcomplete.autocomplete(parser)
     return parser.parse_args()
